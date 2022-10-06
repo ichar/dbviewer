@@ -5,6 +5,22 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+<style type="text/css">
+body {
+    font-family:"Roboto",Tahoma,"Lucida Grande",Arial;
+    font-size:20px;
+    width:100%;
+    height:100%;
+}
+#container {
+    margin:20px auto;
+    border:1px solid #ccc;
+    vertical-align:middle;
+    text-align:center;
+    width:80%;
+}
+</style>
+
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -14,6 +30,8 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div id="container">
+        {% block content %}{% endblock %}
+        </div>
     </body>
 </html>
