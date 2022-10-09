@@ -1,6 +1,6 @@
 <?php
-// src/Services/database.php
-namespace App\DatabaseController;
+// src/Services/Database.php
+namespace App\Services\Database;
 
 #use Doctrine\DBAL\DriverManager;
 use Doctrine\Persistence\ManagerRegistry;
@@ -25,11 +25,10 @@ class DataLoader
         $this->logger->info("getData: $view SQL: [$sql]");
         
         return $connection->fetchAll($sql);
-        // ...
+
     }
 }
 /*
-
 $connectionParams = [
     'dbname' => 'mydb',
     'user' => 'user',

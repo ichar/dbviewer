@@ -3,11 +3,12 @@
 namespace App\Controller;
 
 use App\Constants;
-use App\DatabaseController\DataLoader;
+use App\Services\Database\DataLoader;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+
 
 class UserController extends AbstractController
 {
@@ -19,17 +20,17 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/user/{name}/{pageid}"), name="app_user_notifications"
+     * @Route("/user/{name}/{pageid}", name="app_user_notifications")
      */
     public function notifications(string $name = '...', string $pageid = 'default'): Response
     {
         $this->pageid = $pageid;
         $version = Constants\VERSION;
-        $view = Constants\views[$this->pageid];
+        $view = Constants\getView($this->pageid);
         $userFirstName = $name;
         $userNotifications = ['...', '...'];
 
-        $this->logger->info("Show: {$this->pageid} [{$view}]");
+        $this->logger->info("Show: $this->pageid [$view]");
 
         $loader = new DataLoader();
         $data = $loader->getData($view);
