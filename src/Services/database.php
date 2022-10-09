@@ -19,7 +19,7 @@ class DataLoader
 
     public function getData(string $view)
     {
-        $connection = ManagerRegistry->getConnection('customer');
+        $connection = $this->doctrine->getConnection('customer');
         $sql = "SELECT * FROM $view";
         
         $this->logger->info("getData: $view SQL: [$sql]");
