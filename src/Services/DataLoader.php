@@ -24,7 +24,7 @@ class DataLoader
         
         $this->logger->info("getData: $view SQL: [$sql]");
         
-        return $connection->fetchAll($sql);
+        return $connection->fetchAllAssociative($sql);
 
     }
 }

@@ -1,9 +1,15 @@
 <?php
 // src/Constants.php
 
-namespace App\Constants {
+namespace App; 
+
+class Constants {
 
     const VERSION = '1.0';
+
+    #function getVersion() {
+    #    return $this->VERSION;
+    #}
 
     function getView(string $id) {
 

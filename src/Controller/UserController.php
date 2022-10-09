@@ -22,17 +22,18 @@ class UserController extends AbstractController
     /**
      * @Route("/user/{name}/{pageid}", name="app_user_notifications")
      */
-    public function notifications(string $name = '...', string $pageid = 'default'): Response
+    public function notifications(Constants $constants, DataLoader $loader, string $name = '...', string $pageid = 'default'): Response
     {
         $this->pageid = $pageid;
-        $version = Constants\VERSION;
-        $view = Constants\getView($this->pageid);
+        $version = $constants::VERSION;
+        #$version = $constants-> GetVersion();
+        $view = $constants->getView($this->pageid);
         $userFirstName = $name;
         $userNotifications = ['...', '...'];
 
         $this->logger->info("Show: $this->pageid [$view]");
 
-        $loader = new DataLoader();
+        #$loader = new DataLoader();
         $data = $loader->getData($view);
 
         dd($data);
