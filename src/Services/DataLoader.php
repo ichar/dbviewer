@@ -11,20 +11,42 @@ class DataLoader
 {
     protected $logger;
     protected $doctrine;
+    
+    private $connection;
 
     public function __construct(ManagerRegistry $doctrine, LoggerInterface $logger) {
         $this->logger = $logger;
         $this->doctrine = $doctrine;
+        
+        $this->connection = $this->doctrine->getConnection('customer');
+    }
+
+    public function getMetadata(string $table) {
+        $ob = str_replace('"', '', $table);
+
+        $sm = $this->connection->getSchemaManager();
+        $meta = $sm->listTableColumns($ob);
+
+        #print_r($meta);
+        
+        $columns = array();
+        
+        foreach($meta as $key => $value) {
+            array_push($columns, str_replace('"', '', $key));
+        }
+
+        #print_r($columns);
+        
+        return $columns;
     }
 
     public function getData(string $view)
     {
-        $connection = $this->doctrine->getConnection('customer');
-        $sql = "SELECT * FROM $view";
+        $sql = "SELECT * FROM $view LIMIT 10";
         
         $this->logger->info("getData: $view SQL: [$sql]");
         
-        return $connection->fetchAllAssociative($sql);
+        return $this->connection->fetchAllAssociative($sql);
 
     }
 }

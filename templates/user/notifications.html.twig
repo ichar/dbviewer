@@ -3,12 +3,31 @@
 
 {% block content %}
 <h1>Hello, {{ user_first_name }}!</h1>
-<p>У вас новых уведомлений: {{ notifications|length }}</p>
+<p>Всего записей в представлении: {{ size }}, полей: {{ columns|length }}</p>
 <div class="info">
     <span>{{ view }}</span>
 </div>
 
-<div class="footer">
+<div class="version">
     <span>VERSION: {{ version }}<span>
+</div>
+
+<din class="data">
+    <table class="view" id="{{ id }}">
+    <thead>
+    {%for column in columns %}
+        <th>{{ column }}</th>
+    {% endfor %}
+    </thead>
+    <tbody>
+    {%for row in data %}
+        <tr>
+        {%for value in row %}
+            <td>{{ value }}</td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
 </div>
 {% endblock  %}

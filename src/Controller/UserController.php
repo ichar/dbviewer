@@ -34,13 +34,18 @@ class UserController extends AbstractController
         $this->logger->info("Show: $this->pageid [$view]");
 
         #$loader = new DataLoader();
+        $columns = $loader->getMetadata($view);
         $data = $loader->getData($view);
 
-        dd($data);
+        #print_r($columns);
 
         return $this->render('user/notifications.html.twig', [
             'version' => $version,
             'view' => $view,
+            'columns' => $columns,
+            'data' => $data,
+            'size' => count($data),
+            'id' => $this->pageid,
             'user_first_name' => $userFirstName,
             'notifications' => $userNotifications,
         ]);
