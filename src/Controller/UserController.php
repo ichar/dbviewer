@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Constants;
-use App\Services\Database\DataLoader;
+use App\Services\DataLoader;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;

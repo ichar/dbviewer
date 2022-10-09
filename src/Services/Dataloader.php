@@ -1,6 +1,6 @@
 <?php
-// src/Services/Database.php
-namespace App\Services\Database;
+// src/Services/DataLoader.php
+namespace App\Services;
 
 #use Doctrine\DBAL\DriverManager;
 use Doctrine\Persistence\ManagerRegistry;
