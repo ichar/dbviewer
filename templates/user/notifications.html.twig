@@ -3,5 +3,12 @@
 
 {% block content %}
 <h1>Hello, {{ user_first_name }}!</h1>
-<p>У вас новых уведомлений: {{ notifications|length }}</p
+<p>У вас новых уведомлений: {{ notifications|length }}</p>
+<div class="info">
+    <span>{{ view }}</span>
+</div>
+
+<div class="footer">
+    <span>VERSION: {{ version }}<span>
+</div>
 {% endblock  %}

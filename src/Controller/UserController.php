@@ -2,28 +2,43 @@
 // src/Controller/UserController.php
 namespace App\Controller;
 
+use App\Constants;
+use App\DatabaseController\DataLoader;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends AbstractController
 {
+    protected $logger;
+    private $pageid;
+
+    public function __construct(LoggerInterface $logger) {
+        $this->logger = $logger;
+    }
 
     /**
-     * @Route("/user/{name}") #, name="app_user_notifications"
+     * @Route("/user/{name}/{pageid}"), name="app_user_notifications"
      */
-
-    public function notifications(string $name = '...'): Response
+    public function notifications(string $name = '...', string $pageid = 'default'): Response
     {
-        // получить информацию пользователя и уведомления каким-то образом
+        $this->pageid = $pageid;
+        $version = Constants\VERSION;
+        $view = Constants\views[$this->pageid];
         $userFirstName = $name;
         $userNotifications = ['...', '...'];
 
-        // путь шаблона - это относительн путь файла из `templates/`
+        $this->logger->info("Show: {$this->pageid} [{$view}]");
+
+        $loader = new DataLoader();
+        $data = $loader->getData($view);
+
+        dd($data);
+
         return $this->render('user/notifications.html.twig', [
-            // этот массив определяет переменные, переданные шаблону, где ключ - это
-            // имя переменной, а значение - значение переменной
-            // (Twig рекомендует использование имен переменных snake_case : 'foo_bar' вместо 'fooBar')
+            'version' => $version,
+            'view' => $view,
             'user_first_name' => $userFirstName,
             'notifications' => $userNotifications,
         ]);
