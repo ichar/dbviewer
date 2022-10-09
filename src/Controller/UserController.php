@@ -14,6 +14,7 @@ class UserController extends AbstractController
 {
     protected $logger;
     private $pageid;
+    private $pageclass;
 
     public function __construct(LoggerInterface $logger) {
         $this->logger = $logger;
@@ -25,6 +26,7 @@ class UserController extends AbstractController
     public function notifications(Constants $constants, DataLoader $loader, string $name = '...', string $pageid = 'default'): Response
     {
         $this->pageid = $pageid;
+        $this->pageclass = $pageid;
         $version = $constants::VERSION;
         #$version = $constants-> GetVersion();
         $view = $constants->getView($this->pageid);
@@ -46,6 +48,7 @@ class UserController extends AbstractController
             'data' => $data,
             'size' => count($data),
             'id' => $this->pageid,
+            'class' => $this->pageclass,
             'user_first_name' => $userFirstName,
             'notifications' => $userNotifications,
         ]);

@@ -12,8 +12,9 @@
     <span>VERSION: {{ version }}<span>
 </div>
 
-<din class="data">
-    <table class="view" id="{{ id }}">
+<div class="data" id="main">
+  <div class="sizable-container">
+    <table class="view {{ class }}" id="mainview">
     <thead>
     {%for column in columns %}
         <th>{{ column }}</th>
@@ -29,5 +30,6 @@
     {% endfor %}
     </tbody>
     </table>
+  </div>
 </div>
 {% endblock  %}

@@ -5,64 +5,13 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-<style type="text/css">
-body {
-    font-family:"Roboto",Tahoma,"Lucida Grande",Arial;
-    font-size:20px;
-    width:100%;
-    height:100%;
-}
-#container {
-    display: block;
-    margin: 20px auto;
-    border: 1px solid #ccc;
-    vertical-align: middle;
-    text-align: center;
-    width: 80%;
-}
-.info {
-    padding: 10px;
-    font-size:1.0em;
-    font-weight: bold;
-}
-.data {
-    font-size:0.6em;
-    color: #333;
-}
-.view {
-    width: 100%;
-    border-collapse:collapse;
-}
-th {
-    background-color:#4ac;
-    color:#000;
-    padding:5px;
-    border:1px solid gray;
-    font-size:1.2em;
-    font-weight:500;
-    cursor: pointer;
-}
-td {
-    padding:5px;
-    font-weight:normal;
-    border:1px solid #ccc;
-    text-align: initial;
-    height: -webkit-fill-available;
-    width: -webkit-fill-available;
-}
+        <link href="{{ asset ('css/datatables.css') }}"  rel ="stylesheet" type="text/css">
+        <link href="{{ asset ('css/base.css') }}" rel ="stylesheet" type="text/css">
 
-.version {
-    display: inline-block;
-    width:20%;
-    text-align: center;
-    border:1px solid #aaa;
-    padding:10px;
-    margin-top:20px;
-    margin-bottom:20px;
-    font-weight: bold;
-    color:#826;
-}
-</style>
+        <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/datatables.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/common.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/index.js') }}"></script>
 
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}

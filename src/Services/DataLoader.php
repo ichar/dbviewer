@@ -42,7 +42,7 @@ class DataLoader
 
     public function getData(string $view)
     {
-        $sql = "SELECT * FROM $view LIMIT 10";
+        $sql = "SELECT * FROM $view LIMIT 1000";
         
         $this->logger->info("getData: $view SQL: [$sql]");
         
