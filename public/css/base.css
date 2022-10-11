@@ -83,6 +83,11 @@ td {
 .odd  { background-color:#ececec !important; }
 .even { background-color:#f7f7f7 !important; }
 
+.dataTables_wrapper::-webkit-scrollbar {
+    width:10px;
+    height:0px;
+}
+
 .version {
     display: inline-block;
     width:20%;

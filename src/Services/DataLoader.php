@@ -46,7 +46,7 @@ class DataLoader
         dump($this->views);
         $ob = strtolower($view);
         $is_view = (in_array($view, $this->views) === true) ? 1: 0;
-        echo "$view [$ob]:{$is_view}";
+        #echo "$view [$ob]:{$is_view}";
         return $is_view;
     }
 
@@ -108,7 +108,7 @@ class DataLoader
                 $columns = $this->getViewColumns($view);
             } else {
                 $table = str_replace('"', '', $view);
-                $columns = $this->getTableColumns($table);
+                $columns = null; //$this->getTableColumns($table);
                 $is_table = true;
             }
         }
@@ -123,7 +123,7 @@ class DataLoader
     public function getData(string $view, array $columns, bool $is_table)
     {
         $query = "*";
-        if (!$is_table or isset($columns)) {
+        if ($is_table === false) {
             $items = [];
             foreach ($columns as $column) {
                 array_push($items, "\"{$column}\"");
