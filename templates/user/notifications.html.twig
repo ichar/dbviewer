@@ -3,7 +3,9 @@
 
 {% block content %}
 <h1>Hello, {{ user_first_name }}!</h1>
-<p>Всего записей в представлении: {{ size }}, полей: {{ columns|length }}</p>
+<p>Всего записей в представлении: {{ size }}, полей: {{ columns|length }} 
+    [{% if is_table %} table {% else %} view {% endif %}]
+</p>
 <div class="info">
     <span>{{ view }}</span>
 </div>

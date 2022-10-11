@@ -29,21 +29,20 @@ class UserController extends AbstractController
         $this->pageclass = $pageid;
         $version = $constants::VERSION;
         #$version = $constants-> GetVersion();
-        $view = $constants->getView($this->pageid);
+        
         $userFirstName = $name;
         $userNotifications = ['...', '...'];
 
-        $this->logger->info("Show: $this->pageid [$view]");
-
         #$loader = new DataLoader();
-        $columns = $loader->getMetadata($view);
-        $data = $loader->getData($view);
+        list($view, $columns, $is_table) = $loader->getMetadata($this->pageid);
+        $data = $loader->getData($view, $columns, $is_table);
 
         #print_r($columns);
 
         return $this->render('user/notifications.html.twig', [
             'version' => $version,
             'view' => $view,
+            'is_table' => $is_table,
             'columns' => $columns,
             'data' => $data,
             'size' => count($data),
